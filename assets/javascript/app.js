@@ -1,69 +1,107 @@
 let apikey = "Z1Xz62VjjFsVsFqbCzfn158EvcqKEzQG";
 let queryURL = "https://api.giphy.com/v1/gifs/search?";
 
-let topics = [];
+let topics = ["mango", "orange", "grape"];
 
 let $img = $("<img>");
+let $search = $("#search").val();
 
+$(document).ready(function() {
 
+    function displayButtons() {
 
-$(document).ready(function(){
+        // empties the div at the start to prevent duplicates
+        $("#buttonBox").empty();
 
+        // loops through the topics array and displays buttons for each topic
+        for (let i = 0; i < topics.length; i++) {
 
-    $("#submit").on("click", function() {
+            let $button = $("<button>");
+             
+            $button.addClass("btn btn-primary topic");
+            
+            $button.attr("data-name", topics[i]);
+             
+            $button.text(topics[i]);
+            
+            $("#buttonBox").append($button);
 
-        // get user inputs
-        let $search = $("#search").val();
-        let $rating = $("#ratings").val();
-        let $limit = $("#limit").val();
+        }
 
-        console.log($search, $rating, $limit);
-       
+    }
+
+    // gets necessary information to build the complete url
+    // which than displays the topic on the page by calling the updatePage function
+    function displayTopic() {
+
         // build query params
         let queryParam = { 
 
             "api_key" : apikey,
-            "q" : $search.trim(),
+            "q" : $(this).attr("data-name"),
             // "rating" : $rating.trim(),
-            // "limit" : $limit.trim()
+            "limit" : 10
 
         };
 
-        console.log(queryParam);
-
-        // log URL query parameters as a URL string
+        // turns the object of query params into a string for the url
         let queryParamString = $.param(queryParam);
-        // console.log(queryParamString);
 
-        // console.log(queryParam);
-
+        // holds the complete url
         let completeURL = queryURL + queryParamString;
-        // log query URL plus the query parameters
-        console.log(completeURL);
 
-        // make an AJAX to get data
+        // make an AJAX request to get data
         $.get({
             url: completeURL
         }).then(updatePage);
 
-    });
+    };
 
+    // this gets called once the ajax request in done and it displays
+    // the images/ratings associated with the button
     function updatePage(response) {
-        console.log(response.data);
-        console.log(response.data[0].id);
 
-        let imgURL = response.data[0].images.fixed_height.url;
+        $("#gifBox").empty();
+
+        console.log(response.data);
+
+        for (j = 0; j <= 10; j++) {
+
+        let imgURL = response.data[j].images.fixed_height.url;
+
+        let $p = $("<p>");
 
         $img.attr("src", imgURL),
         ("alt", "image")
 
-        $("#buttonBox").append($img);
+        $("#gifBox").append($img);
+        $("#gifBox").append($p.text(response.data[j].rating));
 
-        // 'response' is the response data
+        }
 
-        // response.data is the array of images
-
-        // once you have the array of images, need to loop through the array and build the HMTL element then add it to the DOM
     }
+
+    // click event for submit button
+    // it adds the users search to the array and displays the new button
+    $("#submit").on("click", function() {
+
+        event.preventDefault();
+
+        // get user inputs
+        $search = $("#search").val();
+
+        // pushed the users search to the array of topics
+        topics.push($search);
+
+        // calls function to display the new button
+        displayButtons();
+
+    });
+
+    // whenever a button is clicked, it'll display the image/rating
+    $(document).on("click", ".topic", displayTopic);
+
+    // displays the original buttons from the array once the page is loaded
+    displayButtons();
 
 });
