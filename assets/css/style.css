@@ -1,0 +1,12 @@
+/* #webBG {
+    background: url('../../anderson-rian-P9q5aGTt3FE-unsplash.jpg');
+} */
+
+.headerBG {
+    background: lightblue;
+}
+
+.mainHeader {
+    letter-spacing: 5px;
+    font-size: 3em;
+}
