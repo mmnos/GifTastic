@@ -1,9 +1,10 @@
-let apikey = "Z1Xz62VjjFsVsFqbCzfn158EvcqKEzQG";
-let queryURL = "https://api.giphy.com/v1/gifs/search?";
+const apikey = "Z1Xz62VjjFsVsFqbCzfn158EvcqKEzQG";
+const queryURL = "https://api.giphy.com/v1/gifs/search?";
 
+// original array of topics
 let topics = ["mango", "orange", "grape"];
 
-let $img = $("<img>");
+// variable to hold user input
 let $search = $("#search").val();
 
 $(document).ready(function() {
@@ -16,13 +17,10 @@ $(document).ready(function() {
         // loops through the topics array and displays buttons for each topic
         for (let i = 0; i < topics.length; i++) {
 
-            let $button = $("<button>");
-             
-            $button.addClass("btn btn-primary topic");
-            
-            $button.attr("data-name", topics[i]);
-             
-            $button.text(topics[i]);
+            let $button = $("<button>")
+                    .addClass("btn btn-primary topic")
+                    .attr("data-name", topics[i])
+                    .text(topics[i]);
             
             $("#buttonBox").append($button);
 
@@ -67,15 +65,19 @@ $(document).ready(function() {
 
         for (j = 0; j <= 10; j++) {
 
-        let imgURL = response.data[j].images.fixed_height.url;
-
+        let imgURLStill = response.data[j].images.fixed_height_still.url;
+        let imgURLGif = response.data[j].images.fixed_height.url;
+        let $img = $("<img>").addClass("changeState");
         let $p = $("<p>");
 
-        $img.attr("src", imgURL),
-        ("alt", "image")
+        $img.attr("src", imgURLStill)
+        .attr("data-still", imgURLStill)
+        .attr("data-animate", imgURLGif)
+        .attr("data-state", "still")
+        .attr("alt", "image")
 
         $("#gifBox").append($img);
-        $("#gifBox").append($p.text(response.data[j].rating));
+        $("#gifBox").append($p.text("Rating : " + (response.data[j].rating).toUpperCase()));
 
         }
 
@@ -87,7 +89,7 @@ $(document).ready(function() {
 
         event.preventDefault();
 
-        // get user inputs
+        // gets user input
         $search = $("#search").val();
 
         // pushed the users search to the array of topics
@@ -100,6 +102,22 @@ $(document).ready(function() {
 
     // whenever a button is clicked, it'll display the image/rating
     $(document).on("click", ".topic", displayTopic);
+
+    $(document).on("click", ".changeState", function() {
+
+        console.log("ujhjkh");
+
+        let state = $(this).attr(`data-state`);
+
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animate");
+        } else {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+        }
+
+    });
 
     // displays the original buttons from the array once the page is loaded
     displayButtons();
