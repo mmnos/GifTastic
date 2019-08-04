@@ -18,7 +18,7 @@ $(document).ready(function() {
         for (let i = 0; i < topics.length; i++) {
 
             let $button = $("<button>")
-                    .addClass("btn btn-primary topic")
+                    .addClass("btn btn-primary topic mr-3")
                     .attr("data-name", topics[i])
                     .text(topics[i]);
             
@@ -67,8 +67,9 @@ $(document).ready(function() {
 
         let imgURLStill = response.data[j].images.fixed_height_still.url;
         let imgURLGif = response.data[j].images.fixed_height.url;
-        let $img = $("<img>").addClass("changeState");
+        let $img = $("<img>").addClass("changeState mb-3");
         let $p = $("<p>");
+        let $p2 = $("<p>");
 
         $img.attr("src", imgURLStill)
         .attr("data-still", imgURLStill)
@@ -78,6 +79,7 @@ $(document).ready(function() {
 
         $("#gifBox").append($img);
         $("#gifBox").append($p.text("Rating : " + (response.data[j].rating).toUpperCase()));
+        $("#gifBox").append($p2.text((response.data[j].title)));
 
         }
 
@@ -86,6 +88,26 @@ $(document).ready(function() {
     // click event for submit button
     // it adds the users search to the array and displays the new button
     $("#submit").on("click", function() {
+
+        event.preventDefault();
+        
+        // gets user input
+        $search = $("#search").val();
+        
+        // pushed the users search to the array of topics
+        topics.push($search);
+        
+        // calls function to display the new button
+        displayButtons();
+        
+        $("#search").val('');
+
+    });
+
+    // if enter key is pressed, function runs
+    $(document).on('keypress',function(e) {
+
+        if (e.which == 13) {
 
         event.preventDefault();
 
@@ -98,14 +120,17 @@ $(document).ready(function() {
         // calls function to display the new button
         displayButtons();
 
+        $("#search").val('');
+
+        }
+
     });
 
     // whenever a button is clicked, it'll display the image/rating
     $(document).on("click", ".topic", displayTopic);
 
+    // on click event to change the image state, still/animated
     $(document).on("click", ".changeState", function() {
-
-        console.log("ujhjkh");
 
         let state = $(this).attr(`data-state`);
 
