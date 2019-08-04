@@ -2,7 +2,7 @@ const apikey = "Z1Xz62VjjFsVsFqbCzfn158EvcqKEzQG";
 const queryURL = "https://api.giphy.com/v1/gifs/search?";
 
 // original array of topics
-let topics = ["mango", "orange", "grape"];
+let topics = ["Iron Man", "Captain America", "Hulk", "Thor", "Elon Musk"];
 
 // variable to hold user input
 let $search = $("#search").val();
@@ -18,7 +18,7 @@ $(document).ready(function() {
         for (let i = 0; i < topics.length; i++) {
 
             let $button = $("<button>")
-                    .addClass("btn btn-primary topic mr-3")
+                    .addClass("btn btn-design topic mr-3")
                     .attr("data-name", topics[i])
                     .text(topics[i]);
             
