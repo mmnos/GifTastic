@@ -7,6 +7,7 @@ let topics = ["Iron Man", "Captain America", "Hulk", "Thor", "Elon Musk"];
 // variable to hold user input
 let $search = $("#search").val();
 
+// once page loads, all javascript will run
 $(document).ready(function() {
 
     function displayButtons() {
@@ -37,7 +38,6 @@ $(document).ready(function() {
 
             "api_key" : apikey,
             "q" : $(this).attr("data-name"),
-            // "rating" : $rating.trim(),
             "limit" : 10
 
         };
@@ -78,8 +78,8 @@ $(document).ready(function() {
         .attr("alt", "image")
 
         $("#gifBox").append($img);
-        $("#gifBox").append($p.text("Rating : " + (response.data[j].rating).toUpperCase()));
         $("#gifBox").append($p2.text((response.data[j].title)));
+        $("#gifBox").append($p.text("Rating : " + (response.data[j].rating).toUpperCase()));
 
         }
 
