@@ -127,6 +127,7 @@ $(document).ready(function() {
 
     });
 
+    // empties div with gifs
     $("#clear").on("click", function () {
 
         $("#gifBox").empty();
