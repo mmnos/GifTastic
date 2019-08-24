@@ -2,7 +2,7 @@ const apikey = "Z1Xz62VjjFsVsFqbCzfn158EvcqKEzQG";
 const queryURL = "https://api.giphy.com/v1/gifs/search?";
 
 // original array of topics
-let topics = ["Iron Man", "Captain America", "Hulk", "Thor", "Elon Musk"];
+let topics = ["Life", "Travel", "Help", "Design", "Code"];
 
 // variable to hold user input
 let $search = $("#search").val();
@@ -76,6 +76,7 @@ $(document).ready(function() {
         .attr("data-animate", imgURLGif)
         .attr("data-state", "still")
         .attr("alt", "image")
+        .css('display', 'inline')
 
         $("#gifBox").append($img);
         $("#gifBox").append($p2.text((response.data[j].title)));
@@ -123,6 +124,12 @@ $(document).ready(function() {
         $("#search").val('');
 
         }
+
+    });
+
+    $("#clear").on("click", function () {
+
+        $("#gifBox").empty();
 
     });
 

@@ -7,15 +7,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>GifTastic</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amiri&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 
 </head>
 
-<body id="webBG">
-      
+<body>
+
     <div class="container">
+
+        <div class="row">
+
+            <div class="col s12 center center">
+
+                <h2>we can be heroes just for one day</h2>
+
+            </div>
+
+        </div>
+
+        <div class="row searchRow">
+
+            <div class="col s4"></div>
+
+            <div class="input-field col s4 center center">
+                <input placeholder="search for your purpose.." id="search" type="text" class="validate">
+                <label for="search"></label>
+                <span>
+                    <a id="submit"><i class="material-icons searchIcon">
+                            search
+                        </i></a>
+                </span>
+                <span>
+                    <a id="clear"><i class="material-icons clearIcon">
+                            clear
+                        </i></a>
+                </span>
+            </div>
+
+            <div class="col s4"></div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col s12">
+
+                <div id="buttonBox" class="center center"></div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col s12">
+
+                <div id="gifBox" class="center center"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- <div class="container">
         
         <div class="row headerBG rounded">
             
@@ -71,15 +132,13 @@
                 </div>
             </div>
 
-        </div>
+        </div> -->
 
-    <script 
-        src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-        crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+        </script>
 
-    <script src="assets/javascript/app.js"></script>
+    <script src="./assets/javascript/app.js"></script>
 
 </body>
 
