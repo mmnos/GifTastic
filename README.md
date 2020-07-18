@@ -1,4 +1,7 @@
-# GifTastic
+## Overview
 
-### Overview
-This web app lets you search for any of your favorite gifs! There are buttons on the page with the theme of superheroes. If you click on a button, it'll display 10 still images. If you click on an image, it'll turn it into a gif. You can use the search bar to find any of your favorite gifs so search away!
+Check out the app here : https://mmnos.github.io/giftastic/
+
+This is a web application that allows users to search for their favorite gifs! After using the search bar, a new button will appear and once the user clicks on it, the new results will show below. Users can toggle between gifs and still by clicking on them. 
+
+![Screenshot](./assets/images//app-screenshot.png)
